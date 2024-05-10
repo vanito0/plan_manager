@@ -1,0 +1,32 @@
+<%= link_to '< 戻る', root_path, class: "btn btn-secondary back link" %>
+<h1 class="title">重要予定一覧</h1>
+<div class="switch_space">
+  <%= link_to "先月", important_plans_path(date: @date.prev_month), class: "btn btn-secondary" %>
+  <h4><%= @current_ym %></h4>
+  <%= link_to "来月", important_plans_path(date: @date.next_month), class: "btn btn-secondary" %>
+  </div>
+</div>
+
+<% wdays_ja = ['(日)','(月)','(火)','(水)','(木)','(金)','(土)'] %>
+<table class="table">
+  <% @plans.each do |plan| %>
+    <tr>
+      <% if plan.fulltime_flag %>
+        <% fulltime = plan.plan_date.strftime("%m/%d#{wdays_ja[plan.plan_date.wday]}") %>
+      <% else %>
+        <% fulltime = plan.start_time.strftime("%m/%d#{wdays_ja[plan.start_time.wday]}") %>
+      <% end %>
+      <td class="founder"><%= fulltime %></td>
+      <td><%= link_to plan.title, plan_path(plan, back_path: important_plans_path), class:"plus" %></td>
+      <% if plan.fulltime_flag %>
+        <td>終日</td>
+      <% else %>
+        <td><%= plan.start_time.strftime("%H:%M") %>~<%= plan.finish_time.strftime("%H:%M") %></td>
+      <% end %>
+      <td><%= link_to image_tag('pencil.png'), edit_plan_path(plan, back_path: important_plans_path) %></td>
+      <td><%= link_to image_tag('trash.png'), plan_path(plan), method: :delete, data: {confirm:"本当に削除しますか?"}  %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to '登録', new_plan_path(back_path: important_plans_path), class: "btn btn-secondary btn-lg fixed-btn link" %>

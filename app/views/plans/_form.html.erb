@@ -1,0 +1,43 @@
+<%= link_to "< 戻る", @transition_path, class: "btn btn-secondary back" %>
+<h1 class="title"><%= title %></h1>
+
+<% if @plan.errors.any? %>
+  <div class="error">
+  <p class="error_message">エラーがあります</p>
+  <ul>
+    <% @plan.errors.full_messages.each do |message| %>
+      <li class="error_message"><%= message %></li>
+    <% end %>
+  </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @plan, local: true do |f| %>
+  <div class="form-group">
+    <%= f.text_field :title, class: "form-control", placeholder: "タイトル" %>
+    <%= f.label :fulltime_flag, class: "label" %>
+    <div class="toggle_button">
+      <%= f.check_box :fulltime_flag, class: "fulltime_flag form-control" %>
+      <label for="fulltime_flag" class="toggle_label">
+    </div>
+    <div class="toggleWrap" id="toggleWrap">
+      <%= f.label :start_time, class: "label" %>
+      <%= f.datetime_field :start_time, class: "form-control" %>
+      <%= f.label :finish_time, class: "label" %>
+      <%= f.datetime_field :finish_time, class: "form-control" %>
+    </div>
+    <div class="toggleWrap2" id="toggleWrap2">
+      <%= f.label :plan_date, class: "label" %>
+      <%= f.date_field :plan_date, class: "form-control" %>
+    </div>
+
+    <%= f.label :must_flag, class: "label" %>
+    <div class="toggle_button">
+      <%= f.check_box :must_flag, class: "must_flag form-control" %>
+      <label for="must_flag" class="toggle_label">
+    </div>
+    <%= f.label :content, class: "content_label" %>
+    <%= f.text_area :content, :size => "30x5", class: "form-control" %>
+    <%= f.submit btn_name, class: "btn btn-secondary submit" %>
+  </div>
+<% end %>

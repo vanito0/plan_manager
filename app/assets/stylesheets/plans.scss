@@ -1,0 +1,261 @@
+// Place all the styles related to the plans controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+h1 {
+  text-align: center;
+}
+
+// 山邊ゾーン
+.back {
+  margin-top: 10px;
+}
+
+.title {
+  margin-bottom: 40px;
+}
+
+.switch_space{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.founder {
+  font-size: 20px;
+}
+
+.fixed-btn {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  margin: 50px 30px;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+
+
+
+// 三原ゾーン
+.pen {
+  float: right;
+}
+
+.subject {
+  float: right;
+}
+
+
+.table tr td {
+  height: 15px;
+  border: none;
+  color: #000;
+}
+
+.table tr td:hover {
+  color: #000;
+}
+
+
+.mustplan {
+  color: #000;
+  background-color: rgb(255, 164, 164);
+}
+
+.mustplan:hover {
+  color: #000;
+}
+
+.plantitle {
+  color: #000;
+}
+
+.plantitle:hover {
+  color: #000;
+}
+
+
+.plus {
+  color: #000;
+}
+
+.plus:hover {
+  color: #000;
+}
+
+// 宮廻ゾーン
+
+.container {
+  position: relative;
+}
+
+.form-group {
+  margin: 20px 0;
+}
+
+.fulltime_flag {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.toggle_label {
+  width: 85px;
+  height: 42px;
+  background: #fff;
+  border: 3px solid #ccc;
+  position: relative;
+  display: inline-block;
+  border-radius: 40px;
+  transition: 0.4s;
+  box-sizing: border-box;
+}
+
+.toggle_label:after {
+  content: "";
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  left: 2px;
+  top: 2px;
+  z-index: 2;
+  background: #ccc;
+  transition: 0.4s;
+}
+
+.fulltime_flag:checked+.toggle_label {
+
+  border: 3px solid #4BD865;
+}
+
+.fulltime_flag:checked+.toggle_label:after {
+  left: 42px;
+  background: #4BD865;
+}
+
+.toggle_button {
+  position: relative;
+  width: 85px;
+  height: 42px;
+  margin: auto;
+}
+
+.must_flag {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.must_flag:checked+.toggle_label {
+
+  border: 3px solid #4BD865;
+}
+
+.must_flag:checked+.toggle_label:after {
+  left: 42px;
+  background: #4BD865;
+}
+
+#title {
+  width: 400px;
+  height: 32px;
+}
+
+.submit {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+.toggle_label {
+  margin: 0;
+}
+
+.label {
+  font-size: 30px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.content_label {
+  font-size: 20px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.toggle_button {
+  top: -50px;
+  left: 40%;
+}
+
+.error_message {
+  list-style: inherit;
+  color: white;
+  text-align: left;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.error {
+  background-color: #f66;
+}
+
+
+
+
+
+
+
+
+
+
+
+// 水野ゾーン
+
+.trash-btn {
+  float: right;
+}
+
+ul li {
+  list-style: none;
+  font-size: 24px;
+  margin: 0;
+}
+
+.face {
+  width: 40px;
+  height: 40px;
+}
+
+#show_table {
+  table-layout: fixed;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.show_content {
+  font-size: 0.8rem;
+  margin-left: 15px;
+  width: 200%;
+}

@@ -1,0 +1,56 @@
+<h1>予定一覧</h1>
+
+<div class="switch_space">
+  <%= link_to '先週', root_path(date: @start_date.prev_week), class: "btn btn-secondary" %>
+  <h6><%= @start_date.strftime("%Y/%m/%d") %>～<%= @end_date.strftime("%Y/%m/%d") %></h6>
+  <%= link_to '来週', root_path(date: @start_date.next_week), class: "btn btn-secondary" %>
+</div>
+
+<h1><button type="button" class="btn btn-secondary btn-lg"><%= link_to "重要一覧ページへ", important_plans_path, class:"link" %></button></h1>
+
+<div class="accordion" id="accordionExample">
+  <% wdays_ja = ['(日)','(月)','(火)','(水)','(木)','(金)','(土)'] %>
+  <% (@start_date..@end_date).each_with_index do |day, idx| %>
+    <% n = idx + 1 %>
+    <% if n == 1%>
+      <% aria_expanded = "true" %>
+      <% class_name = "collapse show" %>
+    <% else %>
+      <% aria_expanded = "false" %>
+      <% class_name = "collapse" %>
+    <% end %>
+    <div class="card">
+      <button class="btn" type="button" data-toggle="collapse" data-target="#collapse<%= n %>" aria-expanded="<%= aria_expanded %>" aria-controls="collapse<%= n %>">
+        <div class="card-header" id="heading<%= n %>">
+        <% classname = nil %>
+        <% one_day_plans = make_one_day_plans(@plans, day) %>
+          <h5 class="<%= change_class(one_day_plans) %>"> 
+            <%= day.strftime("%Y/%m/%d #{wdays_ja[day.wday]}") %>
+            <div class="subject">
+              <a><%= one_day_plans.size %>件
+              </a>
+            </div>
+          </h5>
+        </div>
+      </button>
+      <div id="collapse<%= n %>" class="<%= class_name %>" aria-labelledby="heading<%= n %>" data-parent="#accordionExample">
+        <div class="card-body">
+          <table class="table ">
+              <% one_day_plans.each do |plan| %>
+                <tr class="<%= "mustplan" if plan.must_flag %>">
+                  <td><%= link_to plan.title, plan_path(plan), class:"plantitle" %></td>
+                  <td></td>
+                  <td></td>
+                  <td><%=  change_time(plan) %></td>
+                  <td></td>
+                  <td><%= link_to image_tag('pencil.png'), edit_plan_path(plan) %></td>
+                  <td><%= link_to image_tag('trash.png'), plan_path(plan), method: :delete, data: {confirm:"本当に削除しますか?"}  %></td>
+                </tr>
+              <% end %>
+            <td><%= link_to "+新規予定", new_plan_path(new_date: day), class:"plus" %></td>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

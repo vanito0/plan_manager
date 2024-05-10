@@ -1,0 +1,16 @@
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
+  activerecord:
+    models:
+      plan: '予定'
+    attributes:
+      plan:
+        title: 'タイトル'
+        fulltime_flag: '終日'
+        start_time: '開始'
+        finish_time: '終了'
+        plan_date: '日付'
+        must_flag: '重要'
+        content: '内容'

@@ -1,0 +1,36 @@
+<%= link_to "< 戻る", @transition_path, class: "btn btn-secondary back" %>
+<h1 class="title">予定詳細</h1>
+<% wdays_ja = ['(日)','(月)','(火)','(水)','(木)','(金)','(土)'] %>
+
+<table class="table" id="show_table">
+  <ul>
+    <li>
+      <% if @plan.must_flag %> 
+        <%= image_tag 'face-smile-solid.svg', class: 'face' %>
+      <% end %>
+      <%= @plan.title %>
+    </li>
+  </ul>
+  <tr>
+    <td>日付</td>
+    <% if @plan.fulltime_flag %>
+      <td><%= @plan.plan_date.strftime("%Y/%m/%d #{wdays_ja[@plan.plan_date.wday]}") %></td>
+    <% else %>
+      <td><%= @plan.start_time.strftime("%Y/%m/%d #{wdays_ja[@plan.start_time.wday]}") %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td>時間</td>
+    <% if @plan.fulltime_flag %>
+      <td>終日</td>
+    <% else %>
+      <td><%= @plan.start_time.strftime("%H:%M") %>~<%= @plan.finish_time.strftime("%H:%M") %></td>
+    <% end %>
+  </tr>
+  <td>内容</td>
+  <tr>
+    <td><p class="show_content"><%= safe_join(@plan.content.split("\n"),tag(:br)) %></p></td>
+  </tr>
+</table>
+
+<td><%= link_to image_tag('trash_lg.png'), plan_path(@plan), class: "trash-btn", method: :delete, data: {confirm:"本当に削除しますか?"}  %></td>
